@@ -1,0 +1,125 @@
+.headerItem {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 39px 0 39px 188px;
+    /* margin-bottom: 50px; */
+    background: #512689;
+    box-shadow: 0px 0.996045px 3.98418px rgba(51, 51, 51, 0.15);
+}
+
+.headerItem__img {
+    width: 187px;
+    height: 187px;
+    background: black;
+    border-radius: 100%;
+    margin-right: 32px;
+}
+
+.headerItem__name {
+    color: #FFFFFF;
+    margin-bottom: 16px;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 75px;
+}
+
+.headerItem__description {
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 38px;
+}
+
+.headerItem__back {
+    position: absolute;
+    top: 32px;
+    left: 80px;
+    padding: 8px 16px;
+    background: none;
+    border: 1px solid #F8F8F8;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #F8F8F8;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 136.19%;
+    cursor: pointer;
+}
+
+.headerItem__backSmall {
+    display: none;
+}
+
+.header__backSmall {
+    display: none;
+}
+
+@media (max-width: 1000px) {
+    .headerItem {
+        text-align: center;
+        padding: 64px 100px;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+    .headerItem__name {
+        text-align: center;
+        font-size: 48px;
+        line-height: 62px;
+    }
+    .headerItem__description {
+        text-align: center;
+        margin-bottom: 16px;
+    }
+    .headerItem__img {
+        text-align: center;
+        margin: 0;
+    }
+    .headerItem__back {
+        top: 22px;
+        left: 40px;
+    }
+}
+
+@media (max-width: 376px) {
+    .headerItem {
+        padding: 64px 62px;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+    .headerItem__name {
+        font-size: 36px;
+        line-height: 42px;
+    }
+    .headerItem__back {
+        display: none;
+    }
+    .headerItem__backSmall {
+        display: block;
+        position: absolute;
+        top: 12px;
+        left: 16px;
+        border: none;
+        background: none;
+    }
+    .headerItem__description {
+        text-align: center;
+        margin-bottom: 16px;
+    }
+    .headerItem__img {
+        text-align: center;
+        margin: 0;
+    }
+    .headerItem__name {
+        text-align: center;
+    }
+    .header__backSmall {
+        display: block;
+        position: absolute;
+        top: 12px;
+        right: 16px;
+        text-decoration: none;
+    }
+}

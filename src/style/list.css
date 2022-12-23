@@ -1,0 +1,10 @@
+.containerPost {
+    padding-bottom: 80px;
+}
+
+.containerList {
+    padding: 0 70px 56px 70px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
