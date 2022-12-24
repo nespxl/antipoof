@@ -1,7 +1,6 @@
 import '../style/ItemInfo.css'
 
 export default function ItemInfo() {
-
     const link = 'item/'
     const url = window.location.href.indexOf(link)
     const idLocation = url + link.length
@@ -12,7 +11,7 @@ export default function ItemInfo() {
         idCount += 1
     }
 
-    const post = JSON.parse(localStorage.getItem(`post${idCount}`) || '{}')
+    const post = JSON.parse(localStorage.getItem(`post${idCount}`+1) || '[]')
 
     return (
         <div className="containerInfoItem">

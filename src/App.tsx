@@ -11,7 +11,6 @@ import { useAppDispatch, useAppSelector } from './hooks/customHookQuery';
 import { API } from './API/API';
 
 function App() {
-
   const dispatch = useAppDispatch()
   const {page} = useAppSelector(state => state.slicePostArray)
   const pageArray = [1]
@@ -25,7 +24,7 @@ function App() {
   const Path = () => {
     const routes = useRoutes([
       { path: '/', element: <FormRegistration /> },
-      { path: '/list/:page', element: <List /> },
+      { path: '/list', element: <List /> },
       { path: '/list/item/:id', element: <Item />}
     ])
     return routes

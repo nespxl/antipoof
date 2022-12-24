@@ -1,11 +1,7 @@
 import { useAppDispatch, useAppSelector } from "../hooks/customHookQuery"
 import { slicePost } from "../store/arrayList"
 import '../style/pagination.css'
-
-interface IPaginationArray {
-    active?: boolean
-    page?: number
-}
+import { IPaginationArray } from "../interface/app.interface"
 
 const arrayListPage: Array<IPaginationArray> = []
 
@@ -32,7 +28,6 @@ export default function Pagination() {
                 arrayListPage[i].active = false
             }
         }
-        console.log(arrayListPage, Number(e.target.innerHTML.trim()) - 1)
         pageArray.push(Number(e.target.innerHTML.trim()))
         localStorage.setItem('pageArray', JSON.stringify(pageArray))
     }

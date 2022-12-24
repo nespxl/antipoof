@@ -1,7 +1,6 @@
 import '../style/header.css'
 
 export default function HeaderList() {
-
     const backForm = () => {
         localStorage.removeItem('autoriz')
     }

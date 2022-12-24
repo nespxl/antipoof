@@ -13,7 +13,7 @@ export default function FormRegistration() {
     })
 
     if(localStorage.getItem('autoriz')) {
-        window.location.href = 'http://localhost:3000/list/1'
+        window.location.href += 'list'
     }
 
     useEffect(() => {
@@ -23,20 +23,16 @@ export default function FormRegistration() {
 
     const showPassword = () => {
         setActivePassword(!activePassword)
-        console.log(activePassword)
     }
     const showPasswordConfirm = () => {
         setActivePasswordConfirm(!activePasswordConfirm)
-        console.log(activePasswordConfirm)
     }
 
     const changePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputPassword(e.target.value)
-        console.log(inputPassword)
     }
     const changePasswordConfirm = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputPasswordConfirm(e.target.value)
-        console.log(inputPasswordConfirm)
     }
 
     const onSubmit: SubmitHandler<formRegistration> = data => {
@@ -49,7 +45,7 @@ export default function FormRegistration() {
                 password: data.password
             }
             localStorage.setItem('autoriz', JSON.stringify(autoriz))
-            window.location.href = 'http://localhost:3000/list'
+            window.location.href += 'list'
         }
     }
 
@@ -59,40 +55,37 @@ export default function FormRegistration() {
                 <h1 className="form__title">Регистрация</h1>
                 <div className="form__info">
                     <label htmlFor="name" className="form__field">Имя
-                        {errors?.name && (
-                            <span className='form__error'>{errors.name.message}</span>
-                        )}
                         <input
                             {...register('name', {
-                                required: 'Введите корректное Имя'
+                                required: 'Ошибка'
                             })}
                             type="text"
                             id="name"
-                            className="form__input"
+                            className={errors.name ? "form__inputError form__input" : "form__input"}
                             placeholder='Введите имя'
                         />
+                        {errors?.name && (
+                            <span className='form__error'>{errors.name.message}</span>
+                        )}
                     </label>
                     <label htmlFor="mail" className="form__field">Электронная почта
-                        {errors?.mail && (
-                            <span className='form__error'>{errors.mail.message}</span>
-                        )}
                         <input
                             {...register('mail', {
-                                required: 'Введите корректную Почту'
+                                required: 'Ошибка'
                             })}
                             type="email"
                             id="mail"
-                            className="form__input"
+                            className={errors.name ? "form__inputError form__input" : "form__input"}
                             placeholder='Введите почту'
                         />
+                        {errors?.mail && (
+                            <span className='form__error'>{errors.mail.message}</span>
+                        )}
                     </label>
                     <label htmlFor="password" className="form__field">Пароль
-                        {errors?.password && (
-                            <span className='form__error'>{errors.password.message}</span>
-                        )}
                         <input
                             {...register('password', {
-                                required: 'Введите корректный пароль(минимум 8 символов)',
+                                required: 'Ошибка',
                                 minLength: 8,
                                 maxLength: 16,
                             })}
@@ -100,7 +93,7 @@ export default function FormRegistration() {
                             value={inputPassword}
                             type={activePassword ? "password" : "text"}
                             id="password"
-                            className="form__input"
+                            className={errors.name ? "form__inputError form__input" : "form__input"}
                             placeholder='Введите пароль'
                         />
                         {activePassword ?
@@ -113,20 +106,20 @@ export default function FormRegistration() {
                                 <path d="M9.73017 1.07319C10.1448 1.02485 10.5684 1 10.9999 1C15.6639 1 19.3998 3.90264 20.9999 8C20.6053 9.01041 20.0809 9.94816 19.4446 10.7877M5.51956 2.51944C3.47949 3.76406 1.90105 5.69259 0.999939 8C2.60008 12.0974 6.33597 15 10.9999 15C13.0375 15 14.8979 14.446 16.4805 13.4804M8.87871 5.87859C8.33576 6.42149 7.99994 7.17153 7.99994 8C7.99994 9.65685 9.34308 11 10.9999 11C11.8284 11 12.5785 10.6642 13.1214 10.1212" stroke="#808185" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                         }
+                        {errors?.password && (
+                            <span className='form__error'>{errors.password.message}</span>
+                        )}
                     </label>
                     <label htmlFor="passwordVer" className="form__field">Подтвердить пароль
-                        {errors?.passwordConfirm && (
-                            <span className='form__error'>{errors.passwordConfirm.message}</span>
-                        )}
                         <input
                             {...register('passwordConfirm', {
-                                required: 'Повторите пароль',
+                                required: 'Ошибка',
                             })}
                             onChange={(e) => changePasswordConfirm(e)}
                             value={inputPasswordConfirm}
                             type={activePasswordConfirm ? "password" : "text"}
                             id="passwordVer"
-                            className="form__input"
+                            className={errors.name ? "form__inputError form__input" : "form__input"}
                             placeholder='Введите пароль'
                         />
                         {activePasswordConfirm ?
@@ -139,6 +132,9 @@ export default function FormRegistration() {
                                 <path d="M9.73017 1.07319C10.1448 1.02485 10.5684 1 10.9999 1C15.6639 1 19.3998 3.90264 20.9999 8C20.6053 9.01041 20.0809 9.94816 19.4446 10.7877M5.51956 2.51944C3.47949 3.76406 1.90105 5.69259 0.999939 8C2.60008 12.0974 6.33597 15 10.9999 15C13.0375 15 14.8979 14.446 16.4805 13.4804M8.87871 5.87859C8.33576 6.42149 7.99994 7.17153 7.99994 8C7.99994 9.65685 9.34308 11 10.9999 11C11.8284 11 12.5785 10.6642 13.1214 10.1212" stroke="#808185" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
                         }
+                        {errors?.passwordConfirm && (
+                            <span className='form__error'>{errors.passwordConfirm.message}</span>
+                        )}
                     </label>
                 </div>
                 <input type="submit" value={'Зарегистрироваться'} className="form__btn" />
