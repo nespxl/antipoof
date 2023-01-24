@@ -13,7 +13,7 @@ export default function FormRegistration() {
     })
 
     if(localStorage.getItem('autoriz')) {
-        window.location.href += 'list'
+        window.location.href += 'list/1'
     }
 
     useEffect(() => {
@@ -45,7 +45,7 @@ export default function FormRegistration() {
                 password: data.password
             }
             localStorage.setItem('autoriz', JSON.stringify(autoriz))
-            window.location.href += 'list'
+            window.location.href += 'list/1'
         }
     }
 

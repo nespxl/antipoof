@@ -5,13 +5,11 @@ export default function ItemInfo() {
     const url = window.location.href.indexOf(link)
     const idLocation = url + link.length
     let id: number = Number(window.location.href.slice(idLocation))
-    let idCount = 1
     if(id > 6) {
         id -= 6
-        idCount += 1
     }
 
-    const post = JSON.parse(localStorage.getItem(`post${idCount}`+1) || '[]')
+    const post = JSON.parse(localStorage.getItem(`post11`) || '[]')
 
     return (
         <div className="containerInfoItem">

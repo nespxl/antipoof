@@ -5,11 +5,12 @@ import { IItemUser } from '../interface/app.interface'
 
 export default function ItemList({first_name, last_name, avatar, email, id}: IItemUser) {
     const [like, setLike] = useState(false)
-    const {page} = useAppSelector(state => state.slicePostArray)
+    // const {page} = useAppSelector(state => state.slicePostArray)
+    const pageUsers = JSON.parse(localStorage.getItem('setPage') || '[]')
     const postCount = 6
     let ordinalNumberArray = Number(id) - 1
 
-    if(ordinalNumberArray > postCount) {
+    if(ordinalNumberArray >= postCount) {
         ordinalNumberArray -= postCount
     }
 
@@ -17,7 +18,7 @@ export default function ItemList({first_name, last_name, avatar, email, id}: IIt
         e.preventDefault()
         e.stopPropagation()
         setLike(!like)
-        const postPage = JSON.parse(localStorage.getItem(`post${page}`) || '[]')
+        const postPage = JSON.parse(localStorage.getItem(`post${pageUsers}`) || '[]')
         if(ordinalNumberArray > postCount) {
             ordinalNumberArray -= postCount
             if(postPage[ordinalNumberArray]?.like) {
@@ -32,13 +33,13 @@ export default function ItemList({first_name, last_name, avatar, email, id}: IIt
                 postPage[ordinalNumberArray].like = true
             }
         }
-        localStorage.setItem(`post${page}`, JSON.stringify(postPage))
+        localStorage.setItem(`post${pageUsers}`, JSON.stringify(postPage))
     }
 
-    const postPage: Array<IItemUser> = JSON.parse(localStorage.getItem(`post${page}`) || '[]')
+    const postPage: Array<IItemUser> = JSON.parse(localStorage.getItem(`post${pageUsers}`) || '[]')
 
     return (
-        <a href={`/list/item/${id}`} className="itemList">
+        <a href={`/list/${pageUsers}/item/${id}`} className="itemList">
             <img src={avatar} alt="картинка" className="itemList__img" />
             <p className="itemList__name">{first_name} {last_name}</p>
             <button onClick={(e) => addLike(e)} className={postPage[ordinalNumberArray]?.like ? 'itemList__like_active' : 'itemList__like'}>

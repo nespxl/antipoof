@@ -7,10 +7,10 @@ const arrayListPage: Array<IPaginationArray> = []
 
 export default function Pagination() {
     const dispatch = useAppDispatch()
-    const {total} = useAppSelector(state => state.slicePostArray)
+    const { total } = useAppSelector(state => state.slicePostArray)
     const pagePagination = Math.ceil(total / 6)
-    if(arrayListPage.length === 0) {
-        for(let i = 0; i < pagePagination; i++) {
+    if (arrayListPage.length === 0) {
+        for (let i = 0; i < pagePagination; i++) {
             arrayListPage.push({})
             arrayListPage[i].active = false
             arrayListPage[0].active = true
@@ -18,16 +18,32 @@ export default function Pagination() {
         }
     }
 
+    console.log(window.location.href.indexOf('/list/2'))
+
+    let pageUsers = null
+
+    if (localStorage.getItem('setPage') === null) {
+        localStorage.setItem('setPage', JSON.stringify(1))
+    } else {
+        pageUsers = JSON.parse(localStorage.getItem('setPage') || '[]')
+    }
+
+    for (let i = 0; i < pagePagination; i++) {
+        if (i === Number(pageUsers) - 1) {
+            arrayListPage[i].active = true
+        } else {
+            arrayListPage[i].active = false
+        }
+    }
+
     const setPage = (e: React.ChangeEvent<HTMLInputElement> | any) => {
+        console.log(window.location.href)
         dispatch(slicePost.actions.todoFetchPage(e.target.innerHTML.trim()))
         const pageArray = JSON.parse(localStorage.getItem('pageArray') || '[]')
-        for(let i = 0; i < pagePagination; i++) {
-            if(i === Number(e.target.innerHTML.trim()) - 1) {
-                arrayListPage[i].active = true
-            } else {
-                arrayListPage[i].active = false
-            }
-        }
+        localStorage.setItem('setPage', JSON.stringify(e.target.innerHTML.trim()))
+        const domain = window.location.href.slice(0, window.location.href.indexOf('/list/'))
+        console.log(domain)
+        window.location.href = domain + `/list/${e.target.innerHTML.trim()}`
         pageArray.push(Number(e.target.innerHTML.trim()))
         localStorage.setItem('pageArray', JSON.stringify(pageArray))
     }

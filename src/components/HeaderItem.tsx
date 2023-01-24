@@ -1,21 +1,17 @@
 import { useNavigate } from 'react-router-dom'
-import { useAppSelector } from '../hooks/customHookQuery'
 import '../style/headerItem.css'
 
 export default function HeaderItem() {
     const link = 'item/'
     const url = window.location.href.indexOf(link)
     const idLocation = url + link.length
-    const {array} = useAppSelector(state => state.slicePostArray)
     const navigate = useNavigate()
     let id: number = Number(window.location.href.slice(idLocation))
-    let idCount = 1
     if(id > 6) {
-        idCount += 1
         id -= 6
     }
 
-    const post = JSON.parse(localStorage.getItem(`post${idCount}`+1) || '[]')
+    const post = JSON.parse(localStorage.getItem(`post11`) || '[]')
 
     const backForm = () => {
         localStorage.removeItem('autoriz')
